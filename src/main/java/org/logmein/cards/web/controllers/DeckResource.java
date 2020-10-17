@@ -18,7 +18,7 @@ public class DeckResource {
     private final DeckService deckService;
 
     @PostMapping
-    @ApiOperation(value = "Create a classic deck of 52 cards")
+    @ApiOperation(value = "Creates a classic deck of 52 cards")
     public Deck create() {
         return deckService.create();
     }

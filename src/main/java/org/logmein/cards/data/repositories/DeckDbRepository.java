@@ -16,8 +16,8 @@ public class DeckDbRepository implements DeckRepository {
 
     @Override
     public Deck save(Deck deck) {
-        DeckEntity entity = mapper.toData(deck);
-        DeckEntity savedEntity = repository.save(entity);
+        final DeckEntity entity = mapper.toData(deck);
+        final DeckEntity savedEntity = repository.save(entity);
         return mapper.toDomain(savedEntity);
     }
 

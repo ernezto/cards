@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,7 +32,7 @@ public class DeckDbRepositoryTest {
     private DeckRepository repository;
 
     @BeforeEach
-    public void setup() {
+    public void setUp() {
         repository = new DeckDbRepository(mapper, jpaRepository);
     }
 
