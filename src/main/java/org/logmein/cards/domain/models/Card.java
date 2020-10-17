@@ -11,5 +11,5 @@ public class Card {
     private Integer id;
     private SuitType suit;
     private FaceType face;
-    private int order;
+    private Integer index;
 }
