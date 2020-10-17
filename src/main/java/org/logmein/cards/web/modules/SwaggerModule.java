@@ -16,7 +16,7 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {
+public class SwaggerModule {
     public static final Contact DEFAULT_CONTACT = new Contact("Ernesto Medina", "https://github.com/ernezto/cards", "ernezto@gmail.com");
 
     public static final ApiInfo DEFAULT_API_INFO = new ApiInfo(

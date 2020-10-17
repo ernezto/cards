@@ -7,14 +7,14 @@ import org.logmein.cards.domain.models.Game;
 import org.logmein.cards.domain.services.GameService;
 import org.logmein.cards.web.dtos.CreateGameDto;
 import org.logmein.cards.web.mappers.GameDtoMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.logmein.cards.web.validations.game.GameIdExists;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 
+@Validated
 @RestController
 @AllArgsConstructor
 @RequestMapping("/games")
@@ -29,4 +29,11 @@ public class GameResource {
         Game game = mapper.toDomain(createGameDto);
         return service.create(game);
     }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Deletes an existing game")
+    public void delete(@GameIdExists @PathVariable("id") Integer gameId) {
+        service.delete(gameId);
+    }
+
 }

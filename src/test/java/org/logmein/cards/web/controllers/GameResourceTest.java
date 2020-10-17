@@ -8,6 +8,7 @@ import org.logmein.cards.domain.models.Game;
 import org.logmein.cards.domain.services.GameService;
 import org.logmein.cards.web.dtos.CreateGameDto;
 import org.logmein.cards.web.mappers.GameDtoMapper;
+import org.logmein.cards.web.validations.game.GameIdExists;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -16,12 +17,12 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class GameResourceTest {
     private final EasyRandom random = new EasyRandom();
-    @Mock(stubOnly = true)
+    @Mock
     private GameService service;
     @Mock(stubOnly = true)
     private GameDtoMapper mapper;
@@ -50,4 +51,17 @@ public class GameResourceTest {
         assertThat(actualGame).isEqualTo(expectedGame);
     }
 
+    @Test
+    public void shouldDeleteAGame() {
+        final int gameId = random.nextInt();
+        resource.delete(gameId);
+        verify(service, times(1)).delete(gameId);
+    }
+
+    @Test
+    public void shouldValidateGameIdBeforeDeleting() throws NoSuchMethodException {
+        Method delete = GameResource.class.getMethod("delete", int.class);
+        Parameter createGameDtoParameter = delete.getParameters()[0];
+        assertThat(createGameDtoParameter.getAnnotation(GameIdExists.class)).isNotNull();
+    }
 }

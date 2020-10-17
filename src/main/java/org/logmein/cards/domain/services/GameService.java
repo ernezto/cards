@@ -15,4 +15,8 @@ public class GameService {
     public Game create(Game game) {
         return repository.save(game);
     }
+
+    public void delete(int gameId) {
+        repository.delete(gameId);
+    }
 }
