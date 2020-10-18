@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @ApiModel("player id")
-public class AddPlayerToGameOperationDto {
+public class PlayerIdDto {
     @NotNull
     @PlayerIdExists
     private Integer playerId;

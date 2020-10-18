@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,5 +24,12 @@ public class Game {
 
     public void addPlayer(Player player) {
         players.add(player);
+    }
+
+    public void removePlayer(Integer playerId) {
+        players = players
+                .stream()
+                .filter(p -> !p.hasId(playerId))
+                .collect(toList());
     }
 }

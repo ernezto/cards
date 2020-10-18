@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import org.logmein.cards.domain.models.Game;
 import org.logmein.cards.domain.services.GameService;
 import org.logmein.cards.web.dtos.AddDeckToGameOperationDto;
-import org.logmein.cards.web.dtos.AddPlayerToGameOperationDto;
+import org.logmein.cards.web.dtos.PlayerIdDto;
 import org.logmein.cards.web.dtos.CreateGameDto;
 import org.logmein.cards.web.mappers.GameDtoMapper;
 import org.logmein.cards.web.validations.game.GameIdExists;
@@ -50,8 +50,15 @@ public class GameResource {
 
     @PatchMapping("/{gameId}/players")
     @ApiOperation(value = "Adds an existing player to an existing game")
-    public Game addDeckToGame(@GameIdExists @PathVariable("gameId") Integer gameId,
-                              @Valid @RequestBody AddPlayerToGameOperationDto playerToGameOperation) {
-        return service.addPlayerToGame(gameId, playerToGameOperation.getPlayerId());
+    public Game addPlayerToGame(@GameIdExists @PathVariable("gameId") Integer gameId,
+                                @Valid @RequestBody PlayerIdDto playerToBeAdded) {
+        return service.addPlayerToGame(gameId, playerToBeAdded.getPlayerId());
+    }
+
+    @DeleteMapping("/{gameId}/players/{playerId}")
+    @ApiOperation(value = "Removes an existing player from a game")
+    public Game removeDeckToGame(@GameIdExists @PathVariable("gameId") Integer gameId,
+                                 @Valid @RequestBody PlayerIdDto playerToBeRemoved) {
+        return service.removePlayerFromGame(gameId, playerToBeRemoved.getPlayerId());
     }
 }

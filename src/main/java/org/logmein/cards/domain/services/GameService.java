@@ -28,7 +28,6 @@ public class GameService {
         final Game game = gameRepository.get(gameId);
         final Deck deck = deckRepository.get(deckId);
         game.addDeck(deck);
-        deckRepository.save(deck);
         return gameRepository.save(game);
     }
 
@@ -36,7 +35,12 @@ public class GameService {
         final Game game = gameRepository.get(gameId);
         final Player player = playerRepository.get(playerId);
         game.addPlayer(player);
-        playerRepository.save(player);
+        return gameRepository.save(game);
+    }
+
+    public Game removePlayerFromGame(Integer gameId, Integer playerId) {
+        final Game game = gameRepository.get(gameId);
+        game.removePlayer(playerId);
         return gameRepository.save(game);
     }
 }
