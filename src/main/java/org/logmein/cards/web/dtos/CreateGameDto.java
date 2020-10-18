@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
-@ApiModel("Game")
+@ApiModel("GameData")
 public class CreateGameDto {
     @NotEmpty
     private String name;

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
+import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
 import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 
 @Configuration
@@ -31,6 +32,9 @@ public class SwaggerModule {
         return new Docket(SWAGGER_2)
                 .apiInfo(DEFAULT_API_INFO)
                 .produces(DEFAULT_PRODUCES_AND_CONSUMES)
-                .consumes(DEFAULT_PRODUCES_AND_CONSUMES);
+                .consumes(DEFAULT_PRODUCES_AND_CONSUMES)
+                .select()
+                .apis(basePackage("org.logmein.cards"))
+                .build();
     }
 }
