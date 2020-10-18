@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.util.List;
 import java.util.Map;
 
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.*;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @RestController
@@ -20,18 +21,21 @@ public class ValidationModule {
 
     @ResponseStatus(BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public Map<String, List<String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         return ex.getBindingResult().getAllErrors()
                 .stream()
-                .collect(toMap(e -> ((FieldError) e).getField(), e -> e.getDefaultMessage()));
+                .collect(groupingBy(e ->
+                                ((FieldError) e).getField(),
+                        mapping(e -> e.getDefaultMessage(), toList())
+                ));
     }
 
     @ResponseStatus(BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
-    public Map<String, String> handleValidationExceptions(ConstraintViolationException ex) {
+    public Map<String, List<String>> handleValidationExceptions(ConstraintViolationException ex) {
         return ex.getConstraintViolations()
                 .stream()
-                .collect(toMap(this::getField, ConstraintViolation::getMessage));
+                .collect(groupingBy(this::getField, mapping(ConstraintViolation::getMessage, toList())));
     }
 
     private String getField(ConstraintViolation<?> e) {

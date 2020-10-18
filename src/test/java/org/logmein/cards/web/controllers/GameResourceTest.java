@@ -60,7 +60,7 @@ public class GameResourceTest {
 
     @Test
     public void shouldValidateGameIdBeforeDeleting() throws NoSuchMethodException {
-        Method delete = GameResource.class.getMethod("delete", int.class);
+        Method delete = GameResource.class.getMethod("delete", Integer.class);
         Parameter createGameDtoParameter = delete.getParameters()[0];
         assertThat(createGameDtoParameter.getAnnotation(GameIdExists.class)).isNotNull();
     }

@@ -21,8 +21,8 @@ public class GameDbRepository implements GameRepository {
     @Override
     public Game save(Game game) {
         final GameEntity entity = mapper.toData(game);
-        final GameEntity savedEntity = repository.save(entity);
-        return mapper.toDomain(savedEntity);
+        GameEntity savedEntity = repository.save(entity);
+        return get(savedEntity.getId());
     }
 
     @Override
@@ -34,5 +34,10 @@ public class GameDbRepository implements GameRepository {
     @Override
     public void delete(int gameId) {
         repository.deleteById(gameId);
+    }
+
+    @Override
+    public Game get(Integer id) {
+        return find(id).orElse(null);
     }
 }

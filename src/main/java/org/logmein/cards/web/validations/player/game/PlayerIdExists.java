@@ -1,4 +1,4 @@
-package org.logmein.cards.web.validations.game;
+package org.logmein.cards.web.validations.player.game;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -12,8 +12,8 @@ import static org.logmein.cards.web.validations.ValidationMessages.NOT_FOUND;
 
 @Retention(RUNTIME)
 @Target({PARAMETER, FIELD})
-@Constraint(validatedBy = GameIdExistsValidator.class)
-public @interface GameIdExists {
+@Constraint(validatedBy = PlayerIdExistsValidator.class)
+public @interface PlayerIdExists {
     String message() default NOT_FOUND;
 
     Class<?>[] groups() default {};

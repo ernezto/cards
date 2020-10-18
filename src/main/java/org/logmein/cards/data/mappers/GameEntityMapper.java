@@ -6,9 +6,11 @@ import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 @Component
-@Mapper(componentModel = "spring", uses = DeckEntityMapper.class)
-public interface GameEntityMapper {
-    Game toDomain(GameEntity entity);
+@Mapper(componentModel = "spring", uses = {DeckEntityMapper.class})
+public abstract class GameEntityMapper {
 
-    GameEntity toData(Game game);
+    public abstract Game toDomain(GameEntity entity);
+
+    public abstract GameEntity toData(Game game);
+
 }

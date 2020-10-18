@@ -18,6 +18,6 @@ public class DeckBuilder {
         List<Card> cards = stream(SuitType.values())
                 .flatMap(s -> stream(FaceType.values()).map(f -> new Card(null, s, f, 0)))
                 .collect(toList());
-        return new Deck(null, cards);
+        return new Deck(cards);
     }
 }

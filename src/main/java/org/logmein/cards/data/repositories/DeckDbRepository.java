@@ -8,6 +8,8 @@ import org.logmein.cards.domain.models.Deck;
 import org.logmein.cards.domain.repositories.DeckRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @AllArgsConstructor
 public class DeckDbRepository implements DeckRepository {
@@ -22,7 +24,19 @@ public class DeckDbRepository implements DeckRepository {
     }
 
     @Override
-    public Deck find(int id) {
-        return null;
+    public Optional<Deck> find(int id) {
+        final Optional<DeckEntity> entity = repository.findById(id);
+        return entity.map(mapper::toDomain);
+    }
+
+    @Override
+    public boolean isDeckAssigned(Integer deckId) {
+        final Optional<DeckEntity> entity = repository.findById(deckId);
+        return entity.map(DeckEntity::isAssigned).orElse(false);
+    }
+
+    @Override
+    public Deck get(Integer id) {
+        return find(id).orElse(null);
     }
 }

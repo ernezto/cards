@@ -28,3 +28,5 @@ This API REST implementation tech stack:
 #run api server
 ./gradlew bootRun
 ```
+### Tradeoffs
+- TDD got halfway through given the time constraint. First commits follow pretty closely the process but later on I prioritized on places were I felt I needed it the most.

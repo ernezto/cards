@@ -11,4 +11,6 @@ public interface GameRepository {
     Optional<Game> find(int id);
 
     void delete(int gameId);
+
+    Game get(Integer id);
 }
