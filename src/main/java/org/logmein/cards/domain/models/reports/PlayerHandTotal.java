@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlayerReport {
+public class PlayerHandTotal {
     private Integer playerId;
     private String nickname;
     private Integer handTotalValue;

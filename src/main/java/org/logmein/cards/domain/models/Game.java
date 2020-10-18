@@ -38,8 +38,9 @@ public class Game {
 
     public Player dealCardToPlayer(Integer playerId) {
         Optional<Player> optionalPlayer = players.stream().filter(p -> p.hasId(playerId)).findFirst();
-        Optional<Card> card = pickNextCard();
-        return optionalPlayer.map(player -> pickNextCard().map(player::addCard).orElse(player)).orElse(null);
+        return optionalPlayer
+                .map(player -> pickNextCard().map(player::addCard).orElse(player))
+                .orElse(null);
     }
 
     public Optional<Card> pickNextCard() {
@@ -48,5 +49,11 @@ public class Game {
                 .map(Deck::nextCard)
                 .filter(c -> !isNull(c))
                 .min(comparingInt(Card::getIndex));
+    }
+
+    public List<Card> getUndealtCards() {
+        return decks.stream()
+                .flatMap(c -> c.undealtCards().stream())
+                .collect(toList());
     }
 }
