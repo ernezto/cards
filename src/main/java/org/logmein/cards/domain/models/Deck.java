@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Stack;
 
 import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.toList;
@@ -24,5 +25,13 @@ public class Deck {
 
     public List<Card> undealtCards() {
         return cards.stream().filter(Card::isInDeck).collect(toList());
+    }
+
+    public int size() {
+        return undealtCards().size();
+    }
+
+    public void shuffleFromPositions(Stack<Integer> positions) {
+        cards.forEach(card -> card.setIndex(positions.pop()));
     }
 }

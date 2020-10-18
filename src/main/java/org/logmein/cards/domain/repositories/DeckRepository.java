@@ -2,6 +2,7 @@ package org.logmein.cards.domain.repositories;
 
 import org.logmein.cards.domain.models.Deck;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface DeckRepository {
@@ -12,4 +13,6 @@ public interface DeckRepository {
     boolean isDeckAssigned(Integer deckId);
 
     Deck get(Integer id);
+
+    List<Deck> save(List<Deck> decks);
 }

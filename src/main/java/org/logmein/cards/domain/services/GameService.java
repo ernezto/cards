@@ -53,4 +53,10 @@ public class GameService {
         final Player updatedPlayer = game.dealCardToPlayer(playerId);
         return playerRepository.save(updatedPlayer);
     }
+
+    public void shuffle(Integer gameId) {
+        final Game game = gameRepository.get(gameId);
+        game.shuffle();
+        deckRepository.save(game.getDecks());
+    }
 }

@@ -25,6 +25,10 @@ public interface DeckEntityMapper {
 
     Deck toDomain(DeckEntity entity);
 
+    List<Deck> toDomain(List<DeckEntity> entities);
+
     @Mapping(target = "gameId", ignore = true)
     DeckEntity toData(Deck deck);
+
+    List<DeckEntity> toData(List<Deck> decks);
 }

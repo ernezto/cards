@@ -8,6 +8,7 @@ import org.logmein.cards.domain.models.Deck;
 import org.logmein.cards.domain.repositories.DeckRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -38,5 +39,12 @@ public class DeckDbRepository implements DeckRepository {
     @Override
     public Deck get(Integer id) {
         return find(id).orElse(null);
+    }
+
+    @Override
+    public List<Deck> save(List<Deck> decks) {
+        final List<DeckEntity> entities = mapper.toData(decks);
+        final List<DeckEntity> savedEntities = repository.saveAll(entities);
+        return mapper.toDomain(savedEntities);
     }
 }

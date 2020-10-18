@@ -43,6 +43,12 @@ public class GameResource {
         return service.getById(gameId);
     }
 
+    @PutMapping("/{gameId}/shuffle")
+    @ApiOperation(value = "Shuffle the game deck")
+    public void shuffle(@GameIdExists @PathVariable("gameId") Integer gameId) {
+        service.shuffle(gameId);
+    }
+
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletes an existing game")
     public void delete(@GameIdExists @PathVariable("id") Integer gameId) {

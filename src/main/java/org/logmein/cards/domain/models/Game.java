@@ -4,9 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.IntStream;
 
 import static java.util.Comparator.comparingInt;
 import static java.util.Objects.isNull;
@@ -55,5 +54,18 @@ public class Game {
         return decks.stream()
                 .flatMap(c -> c.undealtCards().stream())
                 .collect(toList());
+    }
+
+    public void shuffle() {
+        final Random random = new Random();
+        Stack<Integer> positions = new Stack<>();
+        int totalOfCards = decks.stream().mapToInt(Deck::size).sum();
+        List<Integer> randomPositions = IntStream
+                .rangeClosed(0, totalOfCards - 1)
+                .boxed()
+                .sorted(comparingInt(p -> random.nextInt()))
+                .collect(toList());
+        positions.addAll(randomPositions);
+        decks.forEach(d -> d.shuffleFromPositions(positions));
     }
 }
