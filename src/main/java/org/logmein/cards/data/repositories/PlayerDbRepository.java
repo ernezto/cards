@@ -8,6 +8,7 @@ import org.logmein.cards.domain.models.Player;
 import org.logmein.cards.domain.repositories.PlayerRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
