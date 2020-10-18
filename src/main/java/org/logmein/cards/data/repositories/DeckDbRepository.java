@@ -3,7 +3,7 @@ package org.logmein.cards.data.repositories;
 import lombok.AllArgsConstructor;
 import org.logmein.cards.data.entities.DeckEntity;
 import org.logmein.cards.data.mappers.DeckEntityMapper;
-import org.logmein.cards.data.repositories.jpa.DeckJPARepository;
+import org.logmein.cards.data.repositories.jpa.DeckJpaRepository;
 import org.logmein.cards.domain.models.Deck;
 import org.logmein.cards.domain.repositories.DeckRepository;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class DeckDbRepository implements DeckRepository {
     private final DeckEntityMapper mapper;
-    private final DeckJPARepository repository;
+    private final DeckJpaRepository repository;
 
     @Override
     public Deck save(Deck deck) {

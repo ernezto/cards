@@ -1,15 +1,10 @@
 package org.logmein.cards.data.repositories;
 
 import lombok.AllArgsConstructor;
-import org.logmein.cards.data.entities.GameEntity;
 import org.logmein.cards.data.entities.PlayerEntity;
-import org.logmein.cards.data.mappers.GameEntityMapper;
 import org.logmein.cards.data.mappers.PlayerEntityMapper;
-import org.logmein.cards.data.repositories.jpa.GameJPARepository;
-import org.logmein.cards.data.repositories.jpa.PlayerJPARepository;
-import org.logmein.cards.domain.models.Game;
+import org.logmein.cards.data.repositories.jpa.PlayerJpaRepository;
 import org.logmein.cards.domain.models.Player;
-import org.logmein.cards.domain.repositories.GameRepository;
 import org.logmein.cards.domain.repositories.PlayerRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PlayerDbRepository implements PlayerRepository {
     private final PlayerEntityMapper mapper;
-    private final PlayerJPARepository repository;
+    private final PlayerJpaRepository repository;
 
     @Override
     public Player save(Player player) {

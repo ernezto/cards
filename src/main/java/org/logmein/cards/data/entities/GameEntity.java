@@ -13,7 +13,8 @@ import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
-@Entity(name = "game")
+@Entity
+@Table(name = "game")
 public class GameEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -24,7 +25,7 @@ public class GameEntity {
 
     @OneToMany(cascade = ALL, orphanRemoval = true, fetch = EAGER)
     @JoinColumn(name = "game_id", nullable = false)
-    private List<DeckEntity> decks = new ArrayList<>();
+    private Set<DeckEntity> decks = new HashSet<>();
 
     @ManyToMany(cascade = ALL)
     @JoinTable(

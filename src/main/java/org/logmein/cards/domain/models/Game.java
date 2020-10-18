@@ -6,7 +6,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import static java.util.Comparator.comparingInt;
+import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toList;
 
 @Data
@@ -31,5 +34,19 @@ public class Game {
                 .stream()
                 .filter(p -> !p.hasId(playerId))
                 .collect(toList());
+    }
+
+    public Player dealCardToPlayer(Integer playerId) {
+        Optional<Player> optionalPlayer = players.stream().filter(p -> p.hasId(playerId)).findFirst();
+        Optional<Card> card = pickNextCard();
+        return optionalPlayer.map(player -> pickNextCard().map(player::addCard).orElse(player)).orElse(null);
+    }
+
+    public Optional<Card> pickNextCard() {
+        return decks
+                .stream()
+                .map(Deck::nextCard)
+                .filter(c -> !isNull(c))
+                .min(comparingInt(Card::getIndex));
     }
 }

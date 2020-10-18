@@ -5,15 +5,14 @@ import lombok.Data;
 import org.logmein.cards.domain.models.FaceType;
 import org.logmein.cards.domain.models.SuitType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import static java.util.Objects.isNull;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
-@Entity(name = "card")
+@Entity
+@Table(name = "card")
 public class CardEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -27,4 +26,7 @@ public class CardEntity {
 
     @Column(nullable = false)
     private Integer index;
+
+    @Column(name = "player_id", insertable = false, updatable = false)
+    private Integer playerId;
 }

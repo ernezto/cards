@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.logmein.cards.data.entities.GameEntity;
 import org.logmein.cards.data.mappers.GameEntityMapper;
-import org.logmein.cards.data.repositories.jpa.GameJPARepository;
+import org.logmein.cards.data.repositories.jpa.GameJpaRepository;
 import org.logmein.cards.domain.models.Game;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class GameDbRepositoryTest {
     @Mock(stubOnly = true)
-    private GameJPARepository jpaRepository;
+    private GameJpaRepository jpaRepository;
     @Mock
     private GameEntityMapper mapper;
     @Mock

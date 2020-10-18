@@ -15,7 +15,7 @@ public class DeckBuilderTest {
     public void shouldCreateAClassic52CardsDeck() {
         final List<Card> expectedCards = cartesianProduct(asList(SuitType.values()), asList(FaceType.values()))
                 .stream()
-                .map(p -> new Card(null, (SuitType) p.get(0), (FaceType) p.get(1), 0))
+                .map(p -> new Card((SuitType) p.get(0), (FaceType) p.get(1), 0))
                 .collect(toList());
         final Deck deck = DeckBuilder.classic().build();
         assertThat(deck.getCards())

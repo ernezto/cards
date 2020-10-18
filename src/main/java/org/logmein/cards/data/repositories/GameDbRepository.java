@@ -3,20 +3,18 @@ package org.logmein.cards.data.repositories;
 import lombok.AllArgsConstructor;
 import org.logmein.cards.data.entities.GameEntity;
 import org.logmein.cards.data.mappers.GameEntityMapper;
-import org.logmein.cards.data.repositories.jpa.GameJPARepository;
+import org.logmein.cards.data.repositories.jpa.GameJpaRepository;
 import org.logmein.cards.domain.models.Game;
 import org.logmein.cards.domain.repositories.GameRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-import static java.util.Optional.*;
-
 @Repository
 @AllArgsConstructor
 public class GameDbRepository implements GameRepository {
     private final GameEntityMapper mapper;
-    private final GameJPARepository repository;
+    private final GameJpaRepository repository;
 
     @Override
     public Game save(Game game) {

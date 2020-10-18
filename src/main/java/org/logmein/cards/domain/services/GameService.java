@@ -16,6 +16,10 @@ public class GameService {
     private final DeckRepository deckRepository;
     private final PlayerRepository playerRepository;
 
+    public Game getById(Integer gameId) {
+        return gameRepository.get(gameId);
+    }
+
     public Game create(Game game) {
         return gameRepository.save(game);
     }
@@ -42,5 +46,11 @@ public class GameService {
         final Game game = gameRepository.get(gameId);
         game.removePlayer(playerId);
         return gameRepository.save(game);
+    }
+
+    public Player dealCardToPlayer(Integer gameId, Integer playerId) {
+        final Game game = gameRepository.get(gameId);
+        final Player updatedPlayer = game.dealCardToPlayer(playerId);
+        return playerRepository.save(updatedPlayer);
     }
 }

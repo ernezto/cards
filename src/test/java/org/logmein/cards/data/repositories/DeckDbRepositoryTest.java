@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.logmein.cards.data.entities.DeckEntity;
 import org.logmein.cards.data.mappers.DeckEntityMapper;
-import org.logmein.cards.data.repositories.jpa.DeckJPARepository;
+import org.logmein.cards.data.repositories.jpa.DeckJpaRepository;
 import org.logmein.cards.domain.models.Deck;
 import org.logmein.cards.domain.repositories.DeckRepository;
 import org.mockito.Mock;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class DeckDbRepositoryTest {
     @Mock(stubOnly = true)
-    private DeckJPARepository jpaRepository;
+    private DeckJpaRepository jpaRepository;
     @Mock
     private DeckEntityMapper mapper;
     @Mock

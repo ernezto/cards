@@ -4,12 +4,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.logmein.cards.domain.models.Game;
+import org.logmein.cards.domain.models.Player;
 import org.logmein.cards.domain.services.GameService;
 import org.logmein.cards.web.dtos.AddDeckToGameOperationDto;
-import org.logmein.cards.web.dtos.PlayerIdDto;
 import org.logmein.cards.web.dtos.CreateGameDto;
+import org.logmein.cards.web.dtos.PlayerIdDto;
 import org.logmein.cards.web.mappers.GameDtoMapper;
 import org.logmein.cards.web.validations.game.GameIdExists;
+import org.logmein.cards.web.validations.player.game.PlayerIdExists;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +37,12 @@ public class GameResource {
         return service.create(game);
     }
 
+    @GetMapping("/{gameId}")
+    @ApiOperation(value = "Gets an existing game")
+    public Game getGame(@GameIdExists @PathVariable("gameId") Integer gameId) {
+        return service.getById(gameId);
+    }
+
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletes an existing game")
     public void delete(@GameIdExists @PathVariable("id") Integer gameId) {
@@ -58,7 +66,14 @@ public class GameResource {
     @DeleteMapping("/{gameId}/players/{playerId}")
     @ApiOperation(value = "Removes an existing player from a game")
     public Game removeDeckToGame(@GameIdExists @PathVariable("gameId") Integer gameId,
-                                 @Valid @RequestBody PlayerIdDto playerToBeRemoved) {
-        return service.removePlayerFromGame(gameId, playerToBeRemoved.getPlayerId());
+                                 @PlayerIdExists @PathVariable("playerId") Integer playerId) {
+        return service.removePlayerFromGame(gameId, playerId);
+    }
+
+    @PatchMapping("/{gameId}/players/{playerId}/deal-card")
+    @ApiOperation(value = "Adds an existing player to an existing game")
+    public Player dealCardToPlayer(@GameIdExists @PathVariable("gameId") Integer gameId,
+                                   @PlayerIdExists @PathVariable("playerId") Integer playerId) {
+        return service.dealCardToPlayer(gameId, playerId);
     }
 }
