@@ -33,6 +33,7 @@ public class SwaggerModule {
                 .apiInfo(DEFAULT_API_INFO)
                 .produces(DEFAULT_PRODUCES_AND_CONSUMES)
                 .consumes(DEFAULT_PRODUCES_AND_CONSUMES)
+                .useDefaultResponseMessages(false)
                 .select()
                 .apis(basePackage("org.logmein.cards"))
                 .build();
