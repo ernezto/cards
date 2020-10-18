@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.logmein.cards.data.entities.GameEntity;
 import org.logmein.cards.data.mappers.GameEntityMapper;
+import org.logmein.cards.data.mappers.PlayerEntityMapper;
 import org.logmein.cards.data.repositories.jpa.GameJpaRepository;
 import org.logmein.cards.domain.models.Game;
 import org.mockito.Mock;

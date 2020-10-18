@@ -1,9 +1,8 @@
-#**Basic Application for a Cards Game**
+## Basic Application for a Cards Game
 
 In order to facilitate the understanding of the assignment I added Swagger to the API, so you can run the server and jump to the swagger URL (see below). Hopefully that documentation should be self-explanatory.
 
 ### This API REST implementation tech stack:
-
 - spring boot framework
 - gradle 
 - hibernate validation 
@@ -30,6 +29,7 @@ In order to facilitate the understanding of the assignment I added Swagger to th
 #run api server
 ./gradlew bootRun
 ```
+
 ### Tradeoffs
 - TDD got halfway through given the time constraint. First commits follow pretty closely the process but later on I went into a more run & test approach.
 - Some validations are not completed like when dealing a card to a player isn't covered that the player is assigned to that game.

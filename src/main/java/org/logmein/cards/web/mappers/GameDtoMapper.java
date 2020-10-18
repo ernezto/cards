@@ -12,5 +12,6 @@ public interface GameDtoMapper {
 
     @Mapping(target = "decks", ignore = true)
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "undealtCards", ignore = true)
     Game toDomain(CreateGameDto dto);
 }

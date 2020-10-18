@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring")
 public interface PlayerDtoMapper {
 
+    @Mapping(target = "cards", ignore = true)
     @Mapping(target = "id", ignore = true)
     Player toDomain(CreatePlayerDto dto);
 }
